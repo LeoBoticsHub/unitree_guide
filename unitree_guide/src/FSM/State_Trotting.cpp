@@ -11,25 +11,35 @@ State_Trotting::State_Trotting(CtrlComponents *ctrlComp)
               _balCtrl(ctrlComp->balCtrl){
     _gait = new GaitGenerator(ctrlComp);
 
-    _gaitHeight = 0.08;
+    // _gaitHeight = 0.08;
+    _gaitHeight = 0.15;
 
-#ifdef ROBOT_TYPE_Go1
-    _Kpp = Vec3(70, 70, 70).asDiagonal();
-    _Kdp = Vec3(10, 10, 10).asDiagonal();
-    _kpw = 780; 
-    _Kdw = Vec3(70, 70, 70).asDiagonal();
-    _KpSwing = Vec3(400, 400, 400).asDiagonal();
-    _KdSwing = Vec3(10, 10, 10).asDiagonal();
-#endif
+// #ifdef ROBOT_TYPE_Go1
+//     _Kpp = Vec3(70, 70, 70).asDiagonal();
+//     _Kdp = Vec3(10, 10, 10).asDiagonal();
+//     _kpw = 780; 
+//     _Kdw = Vec3(70, 70, 70).asDiagonal();
+//     _KpSwing = Vec3(400, 400, 400).asDiagonal();
+//     _KdSwing = Vec3(10, 10, 10).asDiagonal();
+// #endif
 
-#ifdef ROBOT_TYPE_A1
-    _Kpp = Vec3(20, 20, 100).asDiagonal();
-    _Kdp = Vec3(20, 20, 20).asDiagonal();
-    _kpw = 400;
-    _Kdw = Vec3(50, 50, 50).asDiagonal();
-    _KpSwing = Vec3(400, 400, 400).asDiagonal();
-    _KdSwing = Vec3(10, 10, 10).asDiagonal();
-#endif
+// #ifdef ROBOT_TYPE_A1
+//     _Kpp = Vec3(20, 20, 100).asDiagonal();
+//     _Kdp = Vec3(20, 20, 20).asDiagonal();
+//     _kpw = 400;
+//     _Kdw = Vec3(50, 50, 50).asDiagonal();
+//     _KpSwing = Vec3(400, 400, 400).asDiagonal();
+//     _KdSwing = Vec3(10, 10, 10).asDiagonal();
+// #endif
+    // ! HERE CONTROLLER WEIGTHS
+    int p_mul{10};
+    int d_mul{4};
+    _Kpp = Vec3(70, 70, 70).asDiagonal()*p_mul; // PROPORTIONAL POSITION
+    _Kdp = Vec3(10, 10, 10).asDiagonal()*d_mul; // DERIVATIVE POSITION
+    _kpw = 780*p_mul; // PROPORTIONAL ORIENTATION
+    _Kdw = Vec3(70, 70, 70).asDiagonal()*d_mul; // DERIVATIVE ORIENTATION
+    _KpSwing = Vec3(400, 400, 400).asDiagonal()*p_mul; // PROPORTIONAL SWING
+    _KdSwing = Vec3(10, 10, 10).asDiagonal()*d_mul; // DERIVATIVE SWING
 
     _vxLim = _robModel->getRobVelLimitX();
     _vyLim = _robModel->getRobVelLimitY();
