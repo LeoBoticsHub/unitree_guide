@@ -43,12 +43,16 @@ private:
         pthread_t _tid;
         void checkCmdCallback(const std_msgs::Int32 i);
         void changeValueCallback(const geometry_msgs::Twist p);
+        void stopRobotCmdVelCallback(const ros::TimerEvent& event);
 
         // ros specified variable
         // state change listener;
         ros::Subscriber yycmd;
         // velocity change listener;
         ros::Subscriber yyvalue;
+
+        ros::Timer stopRobotCmdVel;
+        ros::Time lastCmdVelTime;
 };
 
 YYPanel::YYPanel() {
@@ -59,6 +63,8 @@ YYPanel::YYPanel() {
         yycmd = n.subscribe("set_mode", 1, &YYPanel::checkCmdCallback, this);
         yyvalue = n.subscribe("cmd_vel", 1, &YYPanel::changeValueCallback, this);
         pthread_create(&_tid, NULL, runyy, (void*)this);
+        stopRobotCmdVel = n.createTimer(ros::Duration(0.9), &YYPanel::stopRobotCmdVelCallback, this);
+        lastCmdVelTime = ros::Time::now();
 }
 
 YYPanel::~YYPanel() {
@@ -125,6 +131,19 @@ void YYPanel::changeValueCallback(const geometry_msgs::Twist p)
         userValue.lx = p.linear.y;
         userValue.ly = p.linear.x;
         userValue.rx = -p.angular.z;
+        
+        lastCmdVelTime = ros::Time::now();
+}
+
+// Checks wheter the robot needs to be stopped because cmd vel are not received anymore
+void YYPanel::stopRobotCmdVelCallback(const ros::TimerEvent& event)
+{
+        if (ros::Time::now() - lastCmdVelTime > ros::Duration(1))
+        {
+                userValue.lx = 0;
+                userValue.ly = 0;                
+                userValue.rx = 0;
+        }
 }
 
 bool running = true;
