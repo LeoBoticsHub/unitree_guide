@@ -119,10 +119,13 @@ file(GLOB_RECURSE SRC_LIST
     "src/*/*.cc"
 )
 
+add_executable(ros_sim src/ros_sim.cpp ${SRC_LIST})
 add_executable(junior_ctrl src/main.cpp ${SRC_LIST})
 if(CATKIN_MAKE)
     target_link_libraries(junior_ctrl ${catkin_LIBRARIES})
+    target_link_libraries(ros_sim ${catkin_LIBRARIES})
     add_dependencies(junior_ctrl ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+    add_dependencies(ros_sim ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 endif()
 if(DEBUG)
     target_include_directories(junior_ctrl PRIVATE ${Python2_INCLUDE_DIRS} ${Python2_NumPy_INCLUDE_DIRS})
