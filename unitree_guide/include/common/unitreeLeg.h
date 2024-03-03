@@ -48,7 +48,7 @@ public:
 class B1Leg : public QuadrupedLeg{
 public:
     B1Leg(const int legID, const Vec3 pHip2B):
-        QuadrupedLeg(legID, 0.1, 0.36, 0.36, pHip2B){}
+        QuadrupedLeg(legID, 0.12675, 0.35, 0.35, pHip2B){}
     ~B1Leg(){}
 };
 

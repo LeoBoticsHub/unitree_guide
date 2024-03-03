@@ -165,12 +165,12 @@ Go1Robot::Go1Robot(){
 }
 
 B1Robot::B1Robot(){
-    _Legs[0] = new B1Leg(0, Vec3( 0.355, -0.07, 0));
-    _Legs[1] = new B1Leg(1, Vec3( 0.355,  0.07, 0));
-    _Legs[2] = new B1Leg(2, Vec3(-0.355, -0.07, 0));
-    _Legs[3] = new B1Leg(3, Vec3(-0.355,  0.07, 0));
+    _Legs[0] = new B1Leg(0, Vec3( 0.3455, -0.072, 0));
+    _Legs[1] = new B1Leg(1, Vec3( 0.3455,  0.072, 0));
+    _Legs[2] = new B1Leg(2, Vec3(-0.3455, -0.072, 0));
+    _Legs[3] = new B1Leg(3, Vec3(-0.3455,  0.072, 0));
 
-    _feetPosNormalStand <<  0.3550,  0.3550, -0.3550, -0.3550,
+    _feetPosNormalStand <<  0.3455,  0.3455, -0.3455, -0.3455,
                            -0.2300,  0.2300, -0.2300,  0.2300,
                            -0.5750, -0.5750, -0.5750, -0.5750;
 
