@@ -12,7 +12,7 @@ State_Trotting::State_Trotting(CtrlComponents *ctrlComp)
     _gait = new GaitGenerator(ctrlComp);
 
     // _gaitHeight = 0.08;
-    _gaitHeight = 0.15;
+    _gaitHeight = 0.10;
 
 // #ifdef ROBOT_TYPE_Go1
 //     _Kpp = Vec3(70, 70, 70).asDiagonal();
@@ -40,6 +40,8 @@ State_Trotting::State_Trotting(CtrlComponents *ctrlComp)
     _Kdw = Vec3(70, 70, 70).asDiagonal()*d_mul; // DERIVATIVE ORIENTATION
     _KpSwing = Vec3(400, 400, 400).asDiagonal()*p_mul; // PROPORTIONAL SWING
     _KdSwing = Vec3(10, 10, 10).asDiagonal()*d_mul; // DERIVATIVE SWING
+
+    _tau_bound = Vec2(-150, 150); // tau boundary for saturation
 
     _vxLim = _robModel->getRobVelLimitX();
     _vyLim = _robModel->getRobVelLimitY();
@@ -108,7 +110,7 @@ void State_Trotting::run(){
         _ctrlComp->setAllStance();
     }
 
-    _lowCmd->setTau(_tau);
+    _lowCmd->setTau(_tau, _tau_bound);
     _lowCmd->setQ(vec34ToVec12(_qGoal));
     _lowCmd->setQd(vec34ToVec12(_qdGoal));
 

@@ -61,6 +61,7 @@ private:
     Vec2 _vxLim, _vyLim, _wyawLim;
     Vec4 *_phase;
     VecInt4 *_contact;
+    Vec2 _tau_bound;
 
     // Calculate average value
     AvgCov *_avg_posError = new AvgCov(3, "_posError", true, 1000, 1000, 1);
