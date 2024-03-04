@@ -72,16 +72,6 @@ struct LowlevelCmd{
         motorCmd[legID*3+2].tau = 0;
     }
     void setSimStanceGain(int legID){ // ! HERE FOR STANDING
-        // motorCmd[legID*3+0].mode = 10;
-        // motorCmd[legID*3+0].Kp = 180;
-        // motorCmd[legID*3+0].Kd = 8;
-        // motorCmd[legID*3+1].mode = 10;
-        // motorCmd[legID*3+1].Kp = 180;
-        // motorCmd[legID*3+1].Kd = 8;
-        // motorCmd[legID*3+2].mode = 10;
-        // motorCmd[legID*3+2].Kp = 300;
-        // motorCmd[legID*3+2].Kd = 15;
-
         motorCmd[legID*3+0].mode = 10;
         motorCmd[legID*3+0].Kp = 700;
         motorCmd[legID*3+0].Kd = 80;
@@ -120,23 +110,14 @@ struct LowlevelCmd{
         }
     }
     void setStableGain(int legID){  // ! WHEN THE FOOT IS IN CONTACT
-        // motorCmd[legID*3+0].mode = 10;
-        // motorCmd[legID*3+0].Kp = 0.8;
-        // motorCmd[legID*3+0].Kd = 0.8;
-        // motorCmd[legID*3+1].mode = 10;
-        // motorCmd[legID*3+1].Kp = 0.8;
-        // motorCmd[legID*3+1].Kd = 0.8;
-        // motorCmd[legID*3+2].mode = 10;
-        // motorCmd[legID*3+2].Kp = 0.8;
-        // motorCmd[legID*3+2].Kd = 0.8;
         motorCmd[legID*3+0].mode = 10;
-        motorCmd[legID*3+0].Kp = 2;
+        motorCmd[legID*3+0].Kp = 20;
         motorCmd[legID*3+0].Kd = 2;
         motorCmd[legID*3+1].mode = 10;
-        motorCmd[legID*3+1].Kp = 2;
+        motorCmd[legID*3+1].Kp = 20;
         motorCmd[legID*3+1].Kd = 2;
         motorCmd[legID*3+2].mode = 10;
-        motorCmd[legID*3+2].Kp = 2;
+        motorCmd[legID*3+2].Kp = 20;
         motorCmd[legID*3+2].Kd = 2;
     }
     void setStableGain(){
@@ -145,23 +126,14 @@ struct LowlevelCmd{
         }
     }
     void setSwingGain(int legID){ // ! WHEN THE FOOT IS IN THE AIR
-        // motorCmd[legID*3+0].mode = 10;
-        // motorCmd[legID*3+0].Kp = 3;
-        // motorCmd[legID*3+0].Kd = 2;
-        // motorCmd[legID*3+1].mode = 10;
-        // motorCmd[legID*3+1].Kp = 3;
-        // motorCmd[legID*3+1].Kd = 2;
-        // motorCmd[legID*3+2].mode = 10;
-        // motorCmd[legID*3+2].Kp = 3;
-        // motorCmd[legID*3+2].Kd = 2;
         motorCmd[legID*3+0].mode = 10;
-        motorCmd[legID*3+0].Kp = 15;
+        motorCmd[legID*3+0].Kp = 45;
         motorCmd[legID*3+0].Kd = 8;
         motorCmd[legID*3+1].mode = 10;
-        motorCmd[legID*3+1].Kp = 15;
+        motorCmd[legID*3+1].Kp = 45;
         motorCmd[legID*3+1].Kd = 8;
         motorCmd[legID*3+2].mode = 10;
-        motorCmd[legID*3+2].Kp = 15;
+        motorCmd[legID*3+2].Kp = 45;
         motorCmd[legID*3+2].Kd = 8;
     }
 };
